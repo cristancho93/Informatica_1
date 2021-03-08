@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <title>Task App</title>
-     <!-- Usamos el jinja (motor de plantillas) para acceder a los archivos staticos -->
+    <title>Datos básicos</title>
+    <!-- Usamos el jinja (motor de plantillas) para acceder a los archivos staticos -->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-     <!--Css bootstrapcdn-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css" integrity="sha384-GzaBcW6yPIfhF+6VpKMjxbTx6tvR/yRd/yJub90CqoIn2Tz4rRXlSpTFYMKHCifX" crossorigin="anonymous">
+    <!--Css bootstrapcdn-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/lumen/bootstrap.min.css"
+        integrity="sha384-GzaBcW6yPIfhF+6VpKMjxbTx6tvR/yRd/yJub90CqoIn2Tz4rRXlSpTFYMKHCifX" crossorigin="anonymous">
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
 </head>
+
 <body class="body">
     <main class="container p-4">
-        <h1 class="display-4 text-center mt-4 title"> Formulario Datos Basicos </h1>
+        <h1 class="display-4 text-center mt-4 title"> Formulario Datos Básicos </h1>
         <div class="row">
             <div class="col-md-4 offset-md-4 my-auto">
                 <div class="card">
@@ -30,11 +33,27 @@
                         <ul class="list-group">
                             {% for person in persons %}
                             <li class="list-group-item">
-                                <div class="grid-container">
-                                  <div class="grid-item">Nombre: {{ person.nombre }}</div>
-                                  <div class="grid-item">Apellido: {{ person.apellido }}</div>
-                                  <div class="grid-item">Telefono: {{ person.telefono }}</div>
-                                </div>
+                                <form action="/update-person" method="POST">
+                                    <div class="grid-container form-group">
+                                        <input type="text" name="id" value="{{ person.id }}" hidden>
+                                        <div class="grid-item">
+                                            Nombre
+                                            <input type="text" name="nombre" placeholder="Nombre" class="form-control" value="{{ person.nombre }}" required>
+                                        </div>
+                                        <div class="grid-item">
+                                            Apellido
+                                            <input type="text" name="apellido" placeholder="apellido" class="form-control" value="{{ person.apellido }}" required>
+                                        </div>
+                                        <div class="grid-item">
+                                            Telefono
+                                            <input type="text" name="telefono" placeholder="telefono" class="form-control" value="{{ person.telefono }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <button type="submit" class="btn btn-success btn-sm">Actualizar</button>
+                                        <a href="{{url_for('delete', id=person.id)}}" class="btn btn-danger btn-sm">Borrar</a>
+                                    </div>
+                                </form>
                             </li>
                             {% endfor %}
                         </ul>
@@ -44,4 +63,5 @@
         </div>
     </main>
 </body>
+
 </html>
