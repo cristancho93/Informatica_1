@@ -20,10 +20,13 @@ class personForm(db.Model):
 
 @app.route('/create-person', methods=['POST'])
 def save():
-    print("app save")
-    person = personForm(request.form['nombre', 'apellido', 'telefono'])
-    print(person + "Impresion persona")
-    #validate(person)
+    person = personForm(nombre=request.form['nombre'], apellido=request.form['apellido'], telefono=request.form['telefono'])
+    saveItem(person)
+    if(person.id is None):
+        return "Error al guardar"
+    else:
+        return "Guardado correcto"
+
 
 if(__name__ == '__main__'):
     app.run(debug=True)

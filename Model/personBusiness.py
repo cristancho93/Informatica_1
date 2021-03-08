@@ -3,7 +3,16 @@ from flask import request
 from app import *
 
 
-def validate(person):
-    print("Entro Bussiness")
-    person = personForm(content=request.form['nombre', 'apellido', 'telefono']);
-    create(person);
+def saveItem(person):
+    validation = False
+    if person.nombre and person.apellido and person.telefono:
+        validation = True
+    else:
+        validation = False
+
+    if validation:
+        create(person)
+    else:
+        return "Revise que los campos del formulario esten diligenciados"
+
+
