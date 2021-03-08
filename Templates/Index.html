@@ -27,7 +27,17 @@
                         </form>
                     </div>
                     <div class="card-body">
-
+                        <ul class="list-group">
+                            {% for person in persons %}
+                            <li class="list-group-item">
+                                <div class="grid-container">
+                                  <div class="grid-item">Nombre: {{ person.nombre }}</div>
+                                  <div class="grid-item">Apellido: {{ person.apellido }}</div>
+                                  <div class="grid-item">Telefono: {{ person.telefono }}</div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>

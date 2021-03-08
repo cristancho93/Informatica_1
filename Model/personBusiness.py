@@ -1,4 +1,4 @@
-from Controller.personDll import *
+from Controller.personController import *
 from flask import request
 from app import *
 
@@ -14,5 +14,8 @@ def saveItem(person):
         create(person)
     else:
         return "Revise que los campos del formulario esten diligenciados"
+
+def listaBussiness ():
+    return lista()
 
 

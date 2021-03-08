@@ -10,7 +10,8 @@ db = SQLAlchemy(app)
 #Ruta por defecto de arranque del formulario
 @app.route('/')
 def home():
-    return render_template('Index.html')
+    persons = listaBussiness()
+    return render_template('Index.html', persons = persons)
 
 class personForm(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -25,7 +26,7 @@ def save():
     if(person.id is None):
         return "Error al guardar"
     else:
-        return "Guardado correcto"
+        return redirect(url_for('home'))
 
 
 if(__name__ == '__main__'):
